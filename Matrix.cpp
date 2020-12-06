@@ -343,17 +343,17 @@ Matrix operator*(float a, const Matrix& m)
 istream& operator>>(istream& in, Matrix& a)
 {
 	cout << "please enter the row and column of the matrix" << endl;
-	cin >> a.row;
-	cin >> a.column;
-	a.matrix = new float[a.column * a.row];
-	a.count_matrix = (int*)malloc(sizeof(int));
-	(*a.count_matrix) = 1;
+	int r, c;
+	cin >> r;
+	cin >> c;
+	a = Matrix(r, c);
+	float* matrix = a.Getmatrix();
 	cout << "please enter the element of the matrix" << endl;
-	for (int i = 0; i < a.row; i++) {
-		for (int j = 0; j < a.column; j++) {
+	for (int i = 0; i < r; i++) {
+		for (int j = 0; j < c; j++) {
 			string s;
 			in >> s;
-			a.matrix[i * a.column + j] = check_float(s);
+			matrix[i * c + j] = check_float(s);
 		}
 	}
 	return in;
